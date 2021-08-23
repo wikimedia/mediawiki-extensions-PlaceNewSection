@@ -15,9 +15,14 @@
     }
   },
 
+  "AutoloadNamespaces": {
+    "MediaWiki\\Extension\\PlaceNewSection\\": "src/"
+  },
+
   "ExtensionMessagesFiles": {
     "PlaceNewSectionMagic": "PlaceNewSection.i18n.magic.php"
   },
+
   "Hooks": {
     "GetDoubleUnderscoreIDs": "\\MediaWiki\\Extension\\PlaceNewSection\\Hooks::onGetDoubleUnderscoreIDs",
     "PlaceNewSection": "\\MediaWiki\\Extension\\PlaceNewSection\\Hooks::onPlaceNewSection"
