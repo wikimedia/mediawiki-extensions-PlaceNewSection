@@ -1,0 +1,25 @@
+{
+  "name": "PlaceNewSection",
+  "type": "other",
+  "description": "Adds the <nowiki>__ADDNEWSECTIONBELOW__</nowiki> and <nowiki>__ADDNEWSECTIONABOVE__</nowiki> magic words to control new section placement",
+  "author":
+      [
+        "[http://www.mediawiki.org/wiki/User:Nx Nx]",
+        "Kevin Ernst"
+      ],
+  "url": "http://www.mediawiki.org/wiki/Extension:PlaceNewSection",
+  "requires": {
+    "MediaWiki": ">= 1.29.0",
+    "platform": {
+      "php": ">= 7.1"
+    }
+  },
+
+  "ExtensionMessagesFiles": {
+    "PlaceNewSectionMagic": "PlaceNewSection.i18n.magic.php"
+  },
+  "Hooks": {
+    "GetDoubleUnderscoreIDs": "\\MediaWiki\\Extension\\PlaceNewSection\\Hooks::onGetDoubleUnderscoreIDs",
+    "PlaceNewSection": "\\MediaWiki\\Extension\\PlaceNewSection\\Hooks::onPlaceNewSection"
+  }
+}
