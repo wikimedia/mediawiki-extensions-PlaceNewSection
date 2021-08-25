@@ -22,7 +22,7 @@ So far:
 | Name         | Contact                  b| Why
 | ----         | -------                  | ---
 | Nx           | [User:Nx][2]             | Original author
-| Kevin Ernst  | ernstki -at- mail.uc.edu | Updated to work with MW ≥ 1.31
+| Kevin Ernst  | ernstki -at- mail.uc.edu | Updated to work with MW ≥ 1.33
 
 [1]: https://www.mediawiki.org/wiki/Extension:PlaceNewSection
 [2]: https://en.wikipedia.org/wiki/User:Nx
