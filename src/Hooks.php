@@ -50,23 +50,28 @@ class Hooks
      * @param $text
      * @return bool
      */
-    public static function onPlaceNewSection($content, $oldtext, $subject, &$text )
+    public static function onPlaceNewSection($content, $oldtext, $subject, &$text)
     {
         // hat tip: https://github.com/staspika/mediawiki-numberedheadings/pull/3
         // see also: https://github.com/wikimedia/mediawiki/commit/112b6f3 (removal for 1.35)
         $mwf = MediaWikiServices::getInstance()->getMagicWordFactory();
+
         $mw = $mwf->get( 'addnewsectionbelow' );
-        if ($mw->match($oldtext)) {https://github.com/wikimedia/mediawiki/commit/112b6f3
+
+        if ($mw->match($oldtext)) {
             $regexp = self::placeNewSectionInitRegex($mw);
             $text = preg_replace($regexp, '$1' . StringUtils::escapeRegexReplacement("\n{$subject}{$text}"), $oldtext, 1);
             return false;
         }
+
         $mw = $mwf->get('addnewsectionabove');
+
         if ($mw->match($oldtext)) {
             $regexp = self::placeNewSectionInitRegex($mw);
             $text = preg_replace($regexp, StringUtils::escapeRegexReplacement("{$subject}{$text}\n") . '$1', $oldtext, 1);
             return false;
         }
+
         return true;
     }
 
