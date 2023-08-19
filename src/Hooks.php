@@ -20,59 +20,67 @@
 
 namespace MediaWiki\Extension\PlaceNewSection;
 
-use Language;
 use MagicWord;
 use MediaWiki\MediaWikiServices;
 use StringUtils;
 
-class Hooks
-{
+class Hooks {
+	/**
+	 * @param MagicWord $mw
+	 * @return string
+	 */
+	private static function placeNewSectionInitRegex( MagicWord $mw ) {
+		$case = $mw->mCaseSensitive ? '' : 'iu';
+		return "/({$mw->getBaseRegex()})/{$case}";
+	}
 
-    private static function placeNewSectionInitRegex(MagicWord $mw)
-    {
-        $case = $mw->mCaseSensitive ? '' : 'iu';
-        return "/({$mw->getBaseRegex()})/{$case}";
-    }
+	/**
+	 * @param array &$doubleUnderscoreIDs
+	 */
+	public static function onGetDoubleUnderscoreIDs( &$doubleUnderscoreIDs ) {
+		$doubleUnderscoreIDs[] = 'addnewsectionbelow';
+		$doubleUnderscoreIDs[] = 'addnewsectionabove';
+	}
 
-    /**
-     * @param array &$doubleUnderscoreIDs
-     */
-    public static function onGetDoubleUnderscoreIDs( &$doubleUnderscoreIDs )
-    {
-        $doubleUnderscoreIDs[] = 'addnewsectionbelow';
-        $doubleUnderscoreIDs[] = 'addnewsectionabove';
-    }
+	/**
+	 * @param $content
+	 * @param string $oldtext
+	 * @param string $subject
+	 * @param string $text
+	 * @return bool
+	 */
+	public static function onPlaceNewSection( $content, $oldtext, $subject, &$text ) {
+		// hat tip: https://github.com/staspika/mediawiki-numberedheadings/pull/3
+		// see also: https://github.com/wikimedia/mediawiki/commit/112b6f3 (removal for 1.35)
+		$mwf = MediaWikiServices::getInstance()->getMagicWordFactory();
 
-    /**
-     * @param $content
-     * @param $oldtext
-     * @param $subject
-     * @param $text
-     * @return bool
-     */
-    public static function onPlaceNewSection($content, $oldtext, $subject, &$text)
-    {
-        // hat tip: https://github.com/staspika/mediawiki-numberedheadings/pull/3
-        // see also: https://github.com/wikimedia/mediawiki/commit/112b6f3 (removal for 1.35)
-        $mwf = MediaWikiServices::getInstance()->getMagicWordFactory();
+		$mw = $mwf->get( 'addnewsectionbelow' );
 
-        $mw = $mwf->get( 'addnewsectionbelow' );
+		if ( $mw->match( $oldtext ) ) {
+			$regexp = self::placeNewSectionInitRegex( $mw );
+			$text = preg_replace(
+				$regexp,
+				'$1' . StringUtils::escapeRegexReplacement( "\n{$subject}{$text}" ),
+				$oldtext,
+				1
+			);
+			return false;
+		}
 
-        if ($mw->match($oldtext)) {
-            $regexp = self::placeNewSectionInitRegex($mw);
-            $text = preg_replace($regexp, '$1' . StringUtils::escapeRegexReplacement("\n{$subject}{$text}"), $oldtext, 1);
-            return false;
-        }
+		$mw = $mwf->get( 'addnewsectionabove' );
 
-        $mw = $mwf->get('addnewsectionabove');
+		if ( $mw->match( $oldtext ) ) {
+			$regexp = self::placeNewSectionInitRegex( $mw );
+			$text = preg_replace(
+				$regexp,
+				StringUtils::escapeRegexReplacement( "{$subject}{$text}\n" ) . '$1',
+				$oldtext,
+				1
+			);
+			return false;
+		}
 
-        if ($mw->match($oldtext)) {
-            $regexp = self::placeNewSectionInitRegex($mw);
-            $text = preg_replace($regexp, StringUtils::escapeRegexReplacement("{$subject}{$text}\n") . '$1', $oldtext, 1);
-            return false;
-        }
-
-        return true;
-    }
+		return true;
+	}
 
 }

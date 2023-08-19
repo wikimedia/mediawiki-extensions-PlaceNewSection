@@ -1,28 +1,31 @@
 {
-  "name": "PlaceNewSection",
-  "type": "other",
-  "description": "Adds the <nowiki>__ADDNEWSECTIONBELOW__</nowiki> and <nowiki>__ADDNEWSECTIONABOVE__</nowiki> magic words to control new section placement",
-  "author":
-      [
-        "[http://www.mediawiki.org/wiki/User:Nx Nx]",
-        "Kevin Ernst"
-      ],
-  "license-name": "GPL-2.0-or-later",
-  "url": "http://www.mediawiki.org/wiki/Extension:PlaceNewSection",
-  "requires": {
-    "MediaWiki": ">= 1.33.0"
-  },
-
-  "AutoloadNamespaces": {
-    "MediaWiki\\Extension\\PlaceNewSection\\": "src/"
-  },
-
-  "ExtensionMessagesFiles": {
-    "PlaceNewSectionMagic": "PlaceNewSection.i18n.magic.php"
-  },
-
-  "Hooks": {
-    "GetDoubleUnderscoreIDs": "\\MediaWiki\\Extension\\PlaceNewSection\\Hooks::onGetDoubleUnderscoreIDs",
-    "PlaceNewSection": "\\MediaWiki\\Extension\\PlaceNewSection\\Hooks::onPlaceNewSection"
-  }
+	"name": "PlaceNewSection",
+	"type": "other",
+	"descriptionmsg": "placenewsection-desc",
+	"author":
+		[
+			"[https://www.mediawiki.org/wiki/User:Nx Nx]",
+			"Kevin Ernst"
+		],
+	"license-name": "GPL-2.0-or-later",
+	"url": "https://www.mediawiki.org/wiki/Extension:PlaceNewSection",
+	"requires": {
+		"MediaWiki": ">= 1.33.0"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\PlaceNewSection\\": "src/"
+	},
+	"MessagesDirs": {
+		"PlaceNewSection": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"PlaceNewSectionMagic": "PlaceNewSection.i18n.magic.php"
+	},
+	"Hooks": {
+		"GetDoubleUnderscoreIDs": "\\MediaWiki\\Extension\\PlaceNewSection\\Hooks::onGetDoubleUnderscoreIDs",
+		"PlaceNewSection": "\\MediaWiki\\Extension\\PlaceNewSection\\Hooks::onPlaceNewSection"
+	},
+	"manifest_version": 2
 }
