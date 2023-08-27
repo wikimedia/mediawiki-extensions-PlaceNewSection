@@ -21,14 +21,14 @@
 $magicWords = [];
 
 $magicWords['en'] = [
-    // 0 = case insensitive
-    // ref: https://www.mediawiki.org/wiki/Manual:Magic_words#Mapping_wiki_text_to_magic_word_IDs
-    'addnewsectionbelow' => [ 0, '__ADDNEWSECTIONBELOW__' ],
-    'addnewsectionabove' => [ 0, '__ADDNEWSECTIONABOVE__' ],
+	// 0 = case insensitive
+	// ref: https://www.mediawiki.org/wiki/Manual:Magic_words#Mapping_wiki_text_to_magic_word_IDs
+	'addnewsectionbelow' => [ 0, '__ADDNEWSECTIONBELOW__' ],
+	'addnewsectionabove' => [ 0, '__ADDNEWSECTIONABOVE__' ],
 ];
 
 $magicWords['de'] = [
-    // https://de.wikipedia.org/wiki/Hilfe:Variablen#Schalter_und_andere_%E2%80%9Emagische_W%C3%B6rter%E2%80%9C
-    'addnewsectionbelow' => [ 0, '__NEUER_ABSCHNITTSLINK_DRUEBER__' ],
-    'addnewsectionabove' => [ 0, '__NEUER_ABSCHNITTSLINK_RUNTER__' ],
+	// https://de.wikipedia.org/wiki/Hilfe:Variablen#Schalter_und_andere_%E2%80%9Emagische_W%C3%B6rter%E2%80%9C
+	'addnewsectionbelow' => [ 0, '__NEUER_ABSCHNITTSLINK_DRUEBER__' ],
+	'addnewsectionabove' => [ 0, '__NEUER_ABSCHNITTSLINK_RUNTER__' ],
 ];
