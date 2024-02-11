@@ -43,10 +43,10 @@ class Hooks {
 	}
 
 	/**
-	 * @param $content
+	 * @param \WikiPage|\Content $content
 	 * @param string $oldtext
 	 * @param string $subject
-	 * @param string $text
+	 * @param string &$text
 	 * @return bool
 	 */
 	public static function onPlaceNewSection( $content, $oldtext, $subject, &$text ) {
