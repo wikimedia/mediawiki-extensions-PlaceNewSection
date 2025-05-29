@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Extension\PlaceNewSection;
 
-use MagicWord;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\MagicWord;
 use StringUtils;
 
 class Hooks {
